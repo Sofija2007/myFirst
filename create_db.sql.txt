@@ -1,0 +1,60 @@
+BEGIN;
+
+
+CREATE TABLE IF NOT EXISTS public."Authore"
+(
+    uuid uuid NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Authore_pkey" PRIMARY KEY (uuid)
+);
+END;
+
+BEGIN;
+
+
+CREATE TABLE IF NOT EXISTS public."Bookx"
+(
+    uid uuid NOT NULL,
+    isbn text COLLATE pg_catalog."default" NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    date time with time zone NOT NULL,
+    authore_uid uuid NOT NULL,
+    publisher_uid uuid NOT NULL,
+    CONSTRAINT "Bookx_pkey" PRIMARY KEY (uid)
+);
+END;
+
+BEGIN;
+
+
+CREATE TABLE IF NOT EXISTS public."Overdue_assignments"
+(
+    uuid uuid NOT NULL,
+    bookx_uid uuid NOT NULL,
+    reader_uid uuid NOT NULL,
+    CONSTRAINT "Overdue_assignments_pkey" PRIMARY KEY (uuid)
+);
+END;
+
+BEGIN;
+
+
+CREATE TABLE IF NOT EXISTS public."Publisher"
+(
+    uuid uuid NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Publisher_pkey" PRIMARY KEY (uuid)
+);
+END;
+
+BEGIN;
+
+
+CREATE TABLE IF NOT EXISTS public."Reader"
+(
+    uuid uuid NOT NULL,
+    fullname text COLLATE pg_catalog."default" NOT NULL,
+    email text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Reader_pkey" PRIMARY KEY (uuid)
+);
+END;
